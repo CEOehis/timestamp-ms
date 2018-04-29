@@ -7,7 +7,7 @@ module.exports = {
       return { error: 'Invalid Date' }
     }
     var result = {
-      unixtime: +date.format('X'),
+      unixtime: date.unix(),
       natural: moment(date).format('MMMM Do YYYY')
     }
     return result;
@@ -22,7 +22,7 @@ module.exports = {
       return { error: 'Invalid Date' }
     }
     var result = {
-      unixtime: +date.format('X'),
+      unixtime: date.unix(),
       natural: moment(date).format('MMMM Do YYYY')
     }
     return result;
