@@ -1,10 +1,22 @@
 var express = require('express');
 var app = express();
+var parser = require('./app/parser');
 
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-  app.send('index.html')
+app.get('/api/timeservice/:time', function (req, res) {
+  var timeService;
+  if (req.method == 'GET') {
+    var stringParam = req.params.time;
+    if(!isNaN(Number(stringParam))) {
+      timeService = parser.parseUnixTime(Number(stringParam));
+    }
+    else {
+      timeService = parser.parseIsoTime(stringParam);
+    }
+    return res.send((timeService));
+  }
+  return res.send('unable to handle that request');
 });
 
 app.listen(3000, function(err) {
