@@ -7,7 +7,6 @@ app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
   var projectUrl = req.protocol + '://' + req.get('host');
-  console.log(projectUrl);
   res.render('index', {title: 'Timestamp Microservice', projectUrl: projectUrl})
 })
 
@@ -29,9 +28,11 @@ app.get('/api/timeservice/:time', function (req, res) {
 // redirect other routes to index page for instructions
 app.get('*', function(req, res) {
   res.redirect('/')
-})
+});
 
-app.listen(3000, function(err) {
+var port = process.env.PORT || 3000;
+
+app.listen(port, function(err) {
   if(err) throw err;
-  console.log('listening on port 3000');
+  console.log('listening on port ', port);
 });
