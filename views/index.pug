@@ -1,0 +1,39 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css')
+    link(rel='stylesheet', href='/styles/main.css')
+  body
+    div(class="container")
+      h3 API Project: #{title}
+      div(class="row")
+        div(class="ten columns")
+          p The api gets passed a string as a parameter, and checks to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)
+          p If it does, it returns both the Unix timestamp and the natural language form of that date.
+          p If it does not contain a date or Unix timestamp, it returns null for those properties.
+
+          h4 Usage
+          p Requesting!{' '}
+            a(href="/api/timeservice/2018-04-29", target="_blank") #{projectUrl}api/timeservice/2018-04-29
+            |  or
+            br
+            a(href="/api/timeservice/152496400", target="_blank") #{projectUrl}api/timeservice/152496400
+            |  returns
+            pre
+              code
+                |
+                |   {
+                |     unixtime: 1524956400,
+                |     natural: "April 29th 2018"
+                |   }
+                |
+                |
+    div(class="container")
+      footer(class="footer")
+        div built by!{' '}
+          a(href="https://github.com/ceoehis", target="_blank") <strong>celestine</strong>
+        div view source code on!{' '}
+          a(href="https://github.com/CEOehis/timestamp-ms", target="_blank") <strong>Github</strong>

@@ -3,6 +3,13 @@ var app = express();
 var parser = require('./app/parser');
 
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'pug');
+
+app.get('/', function(req, res) {
+  var projectUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log(projectUrl);
+  res.render('index', {title: 'Timestamp Microservice', projectUrl: projectUrl})
+})
 
 app.get('/api/timeservice/:time', function (req, res) {
   var timeService;
