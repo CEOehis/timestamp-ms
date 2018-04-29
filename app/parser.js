@@ -1,12 +1,14 @@
+var moment = require('moment');
+
 module.exports = {
   parseIsoTime: function parseIsoTime(iso) {
-    var date = new Date(iso);
+    var date = moment(iso)
     if(!_isValidDateObj(date)) {
       return { error: 'Invalid Date' }
     }
     var result = {
-      unixtime: date.getTime(),
-      utc: date.toString()
+      unixtime: +date.format('X'),
+      natural: moment(date).format('MMMM Do YYYY')
     }
     return result;
   },
@@ -15,13 +17,13 @@ module.exports = {
     if(typeof iso !== 'number') {
       throw Error('Invalid input');
     }
-    var date = new Date(iso);
+    var date = moment(iso)
     if (!_isValidDateObj(date)) {
       return { error: 'Invalid Date' }
     }
     var result = {
-      unixtime: date.getTime(),
-      utc: date.toString()
+      unixtime: +date.format('X'),
+      natural: moment(date).format('MMMM Do YYYY')
     }
     return result;
   }

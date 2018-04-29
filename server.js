@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var parser = require('./app/parser');
 
-// app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/api/timeservice/:time', function (req, res) {
   var timeService;
@@ -18,6 +18,11 @@ app.get('/api/timeservice/:time', function (req, res) {
   }
   return res.send('unable to handle that request');
 });
+
+// redirect other routes to index page for instructions
+app.get('*', function(req, res) {
+  res.redirect('/')
+})
 
 app.listen(3000, function(err) {
   if(err) throw err;
