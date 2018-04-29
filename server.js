@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
-  var projectUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  var projectUrl = req.protocol + '://' + req.get('host');
   console.log(projectUrl);
   res.render('index', {title: 'Timestamp Microservice', projectUrl: projectUrl})
 })
